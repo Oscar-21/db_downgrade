@@ -37,8 +37,8 @@ TARGET_ENGINE_VERSION="${START_STRING} $(aws rds describe-db-instances --region 
 [ "${TARGET_ENGINE_VERSION}x" == "x" ] && { echo "There is no engine version found for the given source database ${TARGET_DATABASE} in region ${REGION}, exiting..."; exit 1; }
 
 # Create Option Group
-#aws rds create-option-group \
-#  --option-group-name testoptiongroup \
-#  --engine-name oracle-ee \
-#  --major-engine-version 12.1 \
-#  --option-group-description "Test option group"
+aws rds create-option-group \
+  --option-group-name mlssdevsql-native-backup \
+  --engine-name "$SOURCE_ENGINE_VERSION" \
+  --major-engine-version 12.1 \
+  --option-group-description "Test option group"
